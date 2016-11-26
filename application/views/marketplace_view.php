@@ -3,6 +3,7 @@
     .makepLookbetta p{
         font-size: 20px;
         border : 0.5px solid #66cccc;
+        border-radius: 31px;
     }
 </style>
 <div style="margin-bottom : 100px;"></div>
@@ -64,8 +65,8 @@
                     <div class="panel-body">
                         <span data-bind="visible : $data.name == 'Masnad Nehith' "><img style="width : 300px; height: 300px;" src="<?php echo base_url('images/masnad.jpg'); ?>" /></span>
                         <span data-bind="visible : $data.name == 'deadpool' "><img style="width : 300px; height: 300px;" src="<?php echo base_url('images/deadpool.jpg'); ?>" /></span>
-                        <span data-bind="visible : $data.name == 'joker' "><img style="width : 300px; height: 300px;" src="<?php echo base_url('images/joker.jpg'); ?>" /></span>
                         <span data-bind="visible : $data.name == 'harley' "><img style="width : 300px; height: 300px;" src="<?php echo base_url('images/harley.jpg'); ?>" /></span>
+                        <span data-bind="visible : $data.name == 'joker' "><img style="width : 300px; height: 300px;" src="<?php echo base_url('images/joker.jpg'); ?>" /></span>
                         <div class="text-center makepLookbetta">
                             <p>Currency : <span data-bind="text : $data.cur"></span></p>
                             <p>Amount : <span data-bind="text : $data.Amount"></span></p>
