@@ -75,8 +75,8 @@
                     <div>
                         <span data-bind="visible : $data.name == 'Masnad Nehith' "><img style="width : 100px; height: 100px;" src="<?php echo base_url('images/masnad.jpg'); ?>" /></span>
                         <span data-bind="visible : $data.name == 'deadpool' "><img style="width : 100px; height: 100px;" src="<?php echo base_url('images/deadpool.jpg'); ?>" /></span>
-                        <span data-bind="visible : $data.name == 'joker' "><img style="width : 100px; height: 100px;" src="<?php echo base_url('images/deadpool.jpg'); ?>" /></span>
-                        <span data-bind="visible : $data.name == 'harley' "><img style="width : 100px; height: 100px;" src="<?php echo base_url('images/deadpool.jpg'); ?>" /></span>
+                        <span data-bind="visible : $data.name == 'joker' "><img style="width : 100px; height: 100px;" src="<?php echo base_url('images/joker.jpg'); ?>" /></span>
+                        <span data-bind="visible : $data.name == 'harley' "><img style="width : 100px; height: 100px;" src="<?php echo base_url('images/harley.jpg'); ?>" /></span>
                     </div>
                     <p> Name : <span data-bind="text : $data.name"></span> </p>
                     <p> email : <span data-bind="text : $data.email"></span> </p>

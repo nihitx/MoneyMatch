@@ -104,8 +104,8 @@
                         <input type="file" multiple="multiple" />
                     </span> 
                 </div>
-                <button data-bind="click : uploadallinformation">Upload</button>
-                <button data-bind="click : borrowerRequest">Save</button>
+<!--                <button data-bind="click : uploadallinformation">Upload</button>-->
+                <button class="btn btn-primary" data-bind="click : borrowerRequest">Save</button>
                 <br>
                 
             </div> 

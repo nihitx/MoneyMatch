@@ -110,7 +110,7 @@ public function __construct(){
                     $user_save = 1; 
                     $this->index($user_save);
                 }else{
-                    $this->marketplace();
+                    redirect('welcome/marketplace', 'refresh');
                 }
             }
         }
@@ -151,6 +151,7 @@ public function __construct(){
         if (!$this->session->userdata('user_id')){
          return $this->index();
         }
+        $this->load->helper('url');
         $userid = $this->session->userdata('user_id');
         $data = array(
           'Owner' => $userid,
@@ -167,7 +168,7 @@ public function __construct(){
             return $this->output->set_status_header('401', 'Could not save user data!!!');
         
         }else{
-            $this->borrower_request();
+            redirect('welcome/borrower_request', 'refresh');
         }
     }
     
@@ -189,7 +190,7 @@ public function __construct(){
         $this->load->model('user_model');
         $foo =  $this->user_model->storeborrowrequest($dataArray); 
         if($foo){
-          return  $this->borrower_request();
+          return  redirect('welcome/borrower_request', 'refresh');
         }else{
             $this->output->set_status_header('401', 'Request not understood as an Ajax request!');
         }
@@ -268,7 +269,7 @@ public function __construct(){
             $this->output->set_status_header('401', 'could not update');
         }
         
-        $this->marketplace();
+        redirect('welcome/marketplace', 'refresh');
     }
     
     
