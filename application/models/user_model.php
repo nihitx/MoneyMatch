@@ -117,7 +117,7 @@ class User_model extends CI_Model{
                 on a.Owner = b.borrower_id and b.UPDATE_DT is null
                 left outer join invoice c 
                 on b.investor_id = c.investor_id and c.UPDATE_DT is null
-                WHERE a.Owner = '.$userid.' and a.UPDATE_DT is null';
+                WHERE a.Owner = '.$userid.' and a.UPDATE_DT is null and a.status < 3';
         
         $query = $this->db->query($query);
                 $result = $query->result();

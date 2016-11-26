@@ -5,8 +5,41 @@
         self.allBorrowerMatchData = ko.observableArray();
         self.allBorrowerdata = ko.observableArray();
         self.allinvestedto = ko.observableArray();
-       
+        self.paytrailToken = ko.observable(null);
         
+        var myDate = new Date(new Date().getTime()+(30*24*60*60*1000));
+            self.Duedate = ko.observable(myDate); 
+            self.newAmount = ko.observable(); 
+            self.brwCur = ko.observable(); 
+            self.investorsIban = ko.observable();
+            self.brworigid = ko.observable();
+            self.borrower_owner = ko.observable(); 
+            
+            
+       
+        self.getPaytrailTokenWithAjax = function (data) {
+                $.ajax({
+                type: 'POST',
+                url: BASEURL + '/index.php/paytrail/getPaytrailTokenWithAjax/' + data.amount,
+                contentType: 'application/json; charset=utf-8'
+                })
+                .done(function(data) {
+                    self.paytrailToken(data.paytrail_token);
+                    self.payUserMoney();
+               
+                             
+                })
+                .fail(function(jqXHR, textStatus, errorThrown) {
+                    self.errorMessage(textStatus);
+                    alert(  errorThrown + textStatus);
+            })
+            .always(function(data){
+            });
+        };
+        
+        self.payUserMoney = function () {
+            window.location.href = "https://payment.paytrail.com/payment/load/token/" + self.paytrailToken();
+        };  
   
         function allMatchViewModel(root /* root not needed */, card) {
             var self = this;
@@ -87,18 +120,11 @@
         }
         
         
-            var myDate = new Date(new Date().getTime()+(30*24*60*60*1000));
-            self.Duedate = ko.observable(myDate); 
-            self.newAmount = ko.observable(); 
-            self.brwCur = ko.observable(); 
-            self.investorsIban = ko.observable();
-            self.brworigid = ko.observable();
-            self.borrower_owner = ko.observable(); 
+            
         
         self.CalculateEverythingForInvestment = function(data){
-            console.log(data);
             var NewAmount = parseFloat(data.Amount);
-            var InterestAmount = parseFloat(0.03 * data.Amount);
+            var InterestAmount = parseFloat((data.Interest/100) * data.Amount);
             var NewA = NewAmount + InterestAmount;
             self.newAmount(NewA); 
             self.brwCur(data.currency);

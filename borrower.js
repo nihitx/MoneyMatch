@@ -11,6 +11,35 @@
         
         self.alldata = ko.observableArray();
         self.allBorrowerdata = ko.observableArray();
+        self.paytrailToken = ko.observable(null);
+        
+        
+        self.getPaytrailTokenWithAjax = function (data) {
+            var NewAmount = parseFloat(data.Amount);
+            var InterestAmount = parseFloat((data.Interest/100) * data.Amount);
+            var NewA = NewAmount + InterestAmount;
+            console.log(data.ORIG_ID);
+                $.ajax({
+                type: 'POST',
+                url: BASEURL + '/index.php/paytrail/getPaytrailTokenWithAjax2/' + NewA + '/' + data.ORIG_ID,
+                contentType: 'application/json; charset=utf-8'
+                })
+                .done(function(data) {
+                    self.paytrailToken(data.paytrail_token);
+                    self.payUserMoney();
+               
+                             
+                })
+                .fail(function(jqXHR, textStatus, errorThrown) {
+                    alert(  errorThrown + textStatus);
+            })
+            .always(function(data){
+            });
+        };
+        
+        self.payUserMoney = function () {
+            window.location.href = "https://payment.paytrail.com/payment/load/token/" + self.paytrailToken();
+        };  
         
         self.makeBorrowRequest = function(){
             window.location.href = BASEURL + "index.php/welcome/saveborrowrequest/" + self.amount() + '/' + self.interest() + '/' + self.loantime();    
@@ -25,8 +54,16 @@
             self.iban = card.iban;
             self.amount_got = card.amount_got;
             self.duedate = card.duedate;
-
+            self.ORIG_ID = card.ORIG_ID;
             
+            self.repaytotal = ko.computed(function() {
+               var sum = 0;
+               var interest = 0;
+               interest += parseFloat(self.Interest) / 100;
+                sum += parseFloat(self.Amount) * interest;
+                var result = sum + parseFloat(self.Amount);
+                return result.toFixed(2);
+            });
              
         };
         

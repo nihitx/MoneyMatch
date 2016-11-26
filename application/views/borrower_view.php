@@ -104,11 +104,13 @@
                         <p> Loantime : <span data-bind="text : $data.Loantime"></span> days </p>
                     </div>
                     <div data-bind="if : $data.status== 1" class="panel-body">
-                        <p> Amount to pay back : <span data-bind="text : $data.amount_got"></span> EUR </p>
+                        <p> Amount to pay back : <span data-bind="text : $data.repaytotal"></span> EUR </p>
                         <p> Reference : <span></span> RF234659976 </p>
                         <p> IBAN : <span data-bind="text : $data.iban"></span> </p>
                         <p> Duedate : <span data-bind="text : $data.duedate"> </span> </p>
-                        <p> Did you pay already ? <input type="checkbox" data-bind="checked: $root.AgreedtoTerm" /> </p>
+                        <p> Did you pay already ? </p>
+                        <a style=" color : #fff;"href="#" <a class="btn btn-primary btn-small" href="#" data-bind="click: $root.getPaytrailTokenWithAjax">Pay with bank</a>
+                        
                     </div>
                 </div>
             

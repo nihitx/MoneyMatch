@@ -1,3 +1,4 @@
+<script type="text/javascript" src="//payment.paytrail.com/js/payment-widget-v1.0.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>matchmaker.js" ></script>
 <style>
     .makepLookbetta p{
@@ -32,12 +33,14 @@
                     </div>
                     <div class="panel-body">
                         <p>We give the name and email so you can talk to them if they received the payment or not</p>
-                        <p>Name  : <span data-bind="text : $data.amount"></span> EUR</p>
+                        <p>Name  : <span data-bind="text : $data.name"></span></p>
                         <p>Email : <span data-bind="text : $data.email"></span></p>
                         <p>iban : <span data-bind="text : $data.iban"></span></p>
                         <p>Ref : <span>RF642215546</span></p>
                     </div>
                     <div class="panel-body">
+                        <p>Use your bank to transfer the money</p>
+                            <a style=" color : #fff;"href="#" <a class="btn btn-primary btn-small" href="#" data-bind="click: $root.getPaytrailTokenWithAjax">Pay with bank</a>
                         <p>Did the user pay back? Give them points!</p>
                         <div class="checkbox">
                             <label class="radio-inline"><input type="radio" name="type_person" value="1" >5 Star Borrower</label>
